@@ -19,7 +19,12 @@ class BotManController extends Controller
 
             if ($message == 'hi') {
                 $this->askName($botman);
-            }else{
+            }
+            elseif($message == 'how are you')
+            {
+                $this->fullName($botman);
+            }
+            else{
                 $botman->reply("write 'hi' for testing...");
             }
 
@@ -37,6 +42,14 @@ class BotManController extends Controller
             $name = $answer->getText();
 
             $this->say('Nice to meet you '.$name);
+        });
+    }
+    public function fullName($botman)
+    {
+        $botman->ask('What is your FullName?', function(Answer $answer) {
+            $name = $answer->getText();
+
+            $this->say('MyFullName is '.$name);
         });
     }
 }
